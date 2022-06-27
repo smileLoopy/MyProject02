@@ -1,0 +1,239 @@
+
+    var real_cookie = user_local = user_cookie = '';
+    real_cookie = "";     user_local = localStorage.getItem('REALUCODE');
+    if (real_cookie != '') {
+        localStorage.setItem('REALUCODE', real_cookie);
+        DSP_Set_Cookie('REALUCODE',real_cookie,360);
+    }
+    else {
+        if (user_local != null) {
+            DSP_Set_Cookie('REALUCODE',user_local,360);
+        }
+    }
+
+    user_cookie = DSP_getCookie('REALUCODE');
+    user_local  = localStorage.getItem('REALUCODE')
+
+ 
+    if(real_cookie == '' && user_cookie != ''){
+        function loadanalJS_dsp_ck(b,c){var d=document.getElementsByTagName("body")[0],a=new Image();a.width=0;a.height=0;a.style.display='none';a.src=b;a.async='true';d.appendChild(a)} function loadanal_dsp_ck(b){loadanalJS_dsp_ck(b,"euc-kr")}loadanal_dsp_ck("//tk.realclick.co.kr/dsp_tk/tk_realucode_set.js?user_cookie="+user_cookie+"");
+    }
+// === 테스트 호출 체크 ===
+var dspp = DSP_getCookie('dspp');
+if(dspp != 'JScheck'){
+    if(user_cookie != ''){
+        var user_href = location.href
+        user_href = encodeURI(user_href);
+
+        var user_domain = encodeURI(document.domain);
+        
+        function loadanalJS_dsp_tk(b,c){var d=document.getElementsByTagName("body")[0],a=new Image();a.width=0;a.height=0;a.src=b;a.async='true';a.style.display='none';d.appendChild(a)} function loadanal_dsp_tk(b){loadanalJS_dsp_tk(b,"euc-kr")}loadanal_dsp_tk("//itg.realclick.co.kr/dsp_tk/tk_roi_v2.js?user_cookie="+user_cookie+"&user_domain="+user_domain+"&tk_info=TE44WW05dGRXeDBiM1Z5TWpBeE9RfHwyMDIyMDYyMjIwMjkzMV84NzM5fHx8MTY1NTg5NzM3MXwxMjQuNTAuOTYuMjA3fA==");
+    }
+}
+
+function DSP_Set_Cookie(Name,NameVlaue,validDays){
+    if(validDays > 0){
+        var validDays=validDays; 
+        var exp=new Date();
+        exp.setDate(exp.getDate()+validDays); 
+        var expires = "; expires=" + exp.toGMTString();
+    }
+    else{
+         var expires = "";
+    }
+
+    var location_domain = document.domain;
+    var domain= location_domain.split(".");
+    var domain1 = "";
+
+    // 자리수 체크 해서 메인도메인 가져오기.
+    if(domain.length > 3){
+        for(var i=1; i < domain.length; i++){
+            domain1 = domain1 + "." + domain[i];
+        }        
+    }
+    else if(domain.length==3){
+        domain1 = domain[1] + "." + domain[2];
+        if(domain1=='co.kr' || domain1=='pe.kr' ){
+            domain1 = "." + domain[0] + "." + domain1;
+        }
+        else{
+            domain1 = "." + domain1;
+        }
+    }
+    else{
+        domain1 = "." + domain[0] + "." + domain[1];            
+    }
+    document.cookie = Name + "=" + escape(NameVlaue) + "; path=/; " + expires + "; domain=" + domain1 + ";";
+}
+
+function DSP_Set_Cookie_Time(Name,NameVlaue,validDays){
+    if(validDays > 0){
+        var validDays=validDays; 
+        var exp=new Date();
+        exp.setTime(exp.getTime()+(3600000 * validDays)); 
+        var expires = "; expires=" + exp.toGMTString();
+    }
+    else{
+         var expires = "";
+    }
+
+    var location_domain = document.domain;
+    var domain= location_domain.split(".");
+    var domain1 = "";
+
+    // 자리수 체크 해서 메인도메인 가져오기.
+    if(domain.length > 3){
+        for(var i=1; i < domain.length; i++){
+            domain1 = domain1 + "." + domain[i];
+        }        
+    }
+    else if(domain.length==3){
+        domain1 = domain[1] + "." + domain[2];
+        if(domain1=='co.kr' || domain1=='pe.kr' ){
+            domain1 = "." + domain[0] + "." + domain1;
+        }
+        else{
+            domain1 = "." + domain1;
+        }
+    }
+    else{
+        domain1 = "." + domain[0] + "." + domain[1];            
+    }
+    document.cookie = Name + "=" + escape(NameVlaue) + "; path=/; " + expires + "; domain=" + domain1 + ";";
+}
+
+var agt  = navigator.userAgent.toLowerCase();
+if (agt.indexOf("chrome") != -1) agt = 'c';
+else if (agt.indexOf("opera") != -1) agt = 'o';
+else if (agt.indexOf("firefox") != -1) agt = 'f';
+else if (agt.indexOf("safari") != -1) agt = 's';
+else if (agt.indexOf("msie") != -1) agt = 'm';
+else if (agt.indexOf("trident") != -1) agt = 'm';
+else if (agt.indexOf("netscape") != -1) agt = 'n';
+else agt = 'e';
+
+function DSP_getCookie( name ){
+    var nameOfCookie = name + "=";
+    var x = 0;
+    while ( x <= document.cookie.length ) {
+            var y = (x+nameOfCookie.length);
+            if ( document.cookie.substring( x, y ) == nameOfCookie ) {
+                if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 )
+                    var endOfCookie = document.cookie.length;
+                return unescape( document.cookie.substring( y, endOfCookie ) );
+            }
+        x = document.cookie.indexOf( " ", x ) + 1;
+        if ( x == 0 )
+        break;
+    }
+    return "";
+}
+
+function Real_MKI( url ) {
+	var x = document.createElement("IFRAME");
+	x.setAttribute('src',url);
+	x.style.width=0;
+	x.style.height=0;
+	document.body.appendChild(x);
+}
+
+if(typeof(dspu)  ==  "undefined") {
+    // === 사용자 키 확인 ===
+    //  alert("rmu null 1");
+}
+
+else{
+    var impv = DSP_getCookie('dspuk'); // === 일회성고유키 === 
+    if(typeof(impv) == "undefined" || impv == ""){
+        
+        //노출 전환
+        function loadScript(url, callback) {
+            var script = document.createElement('script');
+            script.src = url;
+            script.onload = callback;
+            document.getElementsByTagName('head')[0].appendChild(script);
+        }
+        var myloaded = function() {}
+
+//        loadScript('//tk.realclick.co.kr/tk_imp_comm.js?dspu=LN8Ym9tdWx0b3VyMjAxOQ&domain=www.bomultour.com&dspuk=Ym9tdWx0b3VyMjAxOTE2NTU4OTczNzE&agt='+agt+'&n=1', myloaded);
+
+    }
+
+    //var dspu = dspu;
+    var dspt =  (typeof(dspt) == "undefined" || dspt == "") ? "" : dspt ;
+    var dspo =  (typeof(dspo) == "undefined" || dspo == "") ? "20220622202931_8739" : dspo ;
+    var dspomv =  (typeof(dspom) == "undefined") ? "" : dspom;
+
+    // === 해당 유저의 전략 리스트 === 
+    var str_sg = ("21544|21545|21784|21785|21786|21787|21788|21789|21790|21791|21792|21793|21794|21795|21796|21797|21798|21799|22996|22997|22998|22999|23000|23001|23002|23003|23004|23005|23006|23007|23008|23009")
+    var arra_str_sg = str_sg.split("|");
+        //var dspbase   = DSP_getCookie('dspbase');
+		var dspbase=""; //변수초기화
+        if(typeof(dspbase) == "undefined" || dspbase == "" ){
+            // === base_data (전략번호|지면코드|소제번호|캠페인|kind) === 
+            var dspbase   = DSP_getCookie('dspbase');
+            var arra_dspbase = dspbase.split("|");
+            var dspremind = DSP_getCookie('dspremind');
+
+            var sg_chk_cnt=0;
+            for(sg_i=0; sg_i<=arra_str_sg.length-1 ; sg_i++){
+                if(arra_str_sg[sg_i] == arra_dspbase[0]){
+                    sg_chk_cnt = 1;
+                    break;
+                }
+            }
+
+            if(sg_chk_cnt == 0){
+                var dspp = DSP_getCookie('dspp');
+                //alert(dspp);
+                if(dspp != 'JScheck'){
+                    //alert("no_match_sg");
+                    DSP_Set_Cookie('dspbase','','-1');
+                    DSP_Set_Cookie('dsptarget','','-1');
+                }
+            }
+
+            if(dspbase != ""){
+                //alert("match_sg");
+                var dspuk = DSP_getCookie('dspuk'); // === 일회성고유키 === 
+                if(typeof(dspuk) == "undefined" || dspuk == ""){
+                   DSP_Set_Cookie('dspuk','Ym9tdWx0b3VyMjAxOTE2NTU4OTczNzE');                   
+                    var dspuk   = DSP_getCookie('dspuk');
+                }
+                
+                var dspd = DSP_getCookie('dspd'); // === 일회성고유키 === 
+                if(typeof(dspd) == "undefined" || dspd == ""){
+                   DSP_Set_Cookie('dspd','2');
+                   var dspd   = DSP_getCookie('dspd');
+                }
+                dspom = "";
+
+                var dsp_base_data = "LN8Ym9tdWx0b3VyMjAxOQ|"+dspbase+"|"+dspd+"|"+dspuk+"|"+dspt+"|"+dspo+"|"+dspom+"|"+"c"; //소재 추가함
+                
+                // === targeting_data ===
+                var dsp_tg_data = DSP_getCookie('dsptarget');
+
+                // ===  counter 처리 ===
+                if(dspremind == ''){    // 리마인드 배너 인 경우 skip
+                    function loadanalJS_dsp(b,c){var d=document.getElementsByTagName("body")[0],a=new Image();a.width=0;a.height=0;a.style.display='none';a.src=b;a.async='true';d.appendChild(a)} function loadanal_dsp(b){loadanalJS_dsp(b,"euc-kr")}loadanal_dsp("//tk.realclick.co.kr/tk_roi.js?dsp_base_data="+dsp_base_data+"&dsp_tg_data="+dsp_tg_data+"&agt="+agt+"&n=2");
+                }
+            }
+
+            else {
+
+                var imp_dsp_base_data = DSP_getCookie('imp_dsp_base_data');
+                var imp_dsp_tg_data = DSP_getCookie('imp_dsp_tg_data');
+
+                if ('' != '' && '' != 'undefined' && imp_dsp_base_data != '' && imp_dsp_tg_data != '')
+                {
+                    //전환구분, 구분번호, 구매금액
+                    var imp_other_data='|20220622202931_8739|';
+
+                    // ===  counter 처리 ===
+                    function loadanalJS_dsp(b,c){var d=document.getElementsByTagName("body")[0],a=new Image();a.width=0;a.height=0;a.style.display='none';a.src=b;a.async='true';d.appendChild(a)} function loadanal_dsp(b){loadanalJS_dsp(b,"euc-kr")}loadanal_dsp("//tk.realclick.co.kr/tk_imp.js?dsp_base_data="+imp_dsp_base_data+"&dsp_tg_data="+imp_dsp_tg_data+"&dsp_other_data="+imp_other_data+"&agt="+agt+"+'&n=3'");
+
+                }
+            }
+        }
+}

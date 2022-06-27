@@ -1,0 +1,160 @@
+/***********************************************************************************
+* action function $(function()
+***********************************************************************************/
+$(document).ready(function() {
+	goto_skip(); 
+	goto_top(); //footer top button
+	//gnb_search(); //Search
+	//selectbox();
+});
+/***********************************************************************************
+* goto skip > footer
+***********************************************************************************/
+function goto_skip() {
+	$('#goto_skip').focusin(function() {
+		$(this).addClass('on');
+	});
+	$('#goto_skip').focusout(function() {
+		$(this).removeClass('on');
+	});
+}
+function goto_top(){
+	$("#goto_btn").css('display', 'none');
+	$(window).scroll(function(){ //scroll event > footer.php
+		if($(window).scrollTop() > 150) {
+			$("#goto_btn").css('display', 'block');
+		} else {
+			$("#goto_btn").css('display', 'none');
+		}
+	});
+	$('#goto_top a').click(function() {
+		$('html, body').animate( {scrollTop: 0}, 100);
+	});
+}
+/***********************************************************************************
+// go location
+// encodeURIComponent, escape
+***********************************************************************************/
+function goLink(url,target) {
+	if(url) {
+		if(target == "" ) { //_self, _blank or orther name
+			top.location.href = url;
+		} else {
+			window.open(url, target);
+		}
+	}
+}
+function goLogin(returnpage) { //로그인 및 예약확인 통합(0/1)
+	if(returnpage) {
+		top.document.location.href = "/member/login/login.asp?returnpage="+encodeURIComponent(returnpage);
+	}else {
+		top.document.location.href = "/member/login/login.asp";
+	}
+}
+function goLogout() {//회원,비회원 통합적용
+	top.document.location.href = "/member/login/logout.asp";
+}
+function goMember(val) {//회원
+	if(val == "logout")	top.location.href = "/member/login/logout.asp";
+	if(val == "dormancy") top.location.href = "/member/login/logout_dormancy.asp";
+	if(val == "join") top.location.href = "/member/join/join.asp";
+	if(val == "find") top.location.href = "/member/find/find.asp";
+	if(val == "mypage") top.location.href = "/member/mypage.asp";
+	//if(val == "reserv")	location.href = "/member/myreserv/reserv.asp"; //회원용예약확인
+}
+function goGuest(val) {//비회원
+	if(val == "login") top.location.href = "/guest/login.asp?logintab=1";
+	if(val == "logout") top.location.href = "/guest/logout.asp";
+	//if(val == "reserv")	location.href = "/guest/reserv.asp"; //고객(비회원)용예약확인
+}
+
+/***********************************************************************************
+* image resize ??????
+* HTML 로 넘어온 <img ... > 태그의 폭이 테이블폭보다 크다면 테이블폭을 적용한다.
+***********************************************************************************/
+//function resizeBoardImage(imageWidth, borderColor) {
+//
+//    var target = document.getElementsByName('target_resize_image[]');
+//    var imageHeight = 0;
+//
+//    if (target) {
+//        for(i=0; i<target.length; i++) { 
+//            // 원래 사이즈를 저장해 놓는다
+//            target[i].tmp_width  = target[i].width;
+//            target[i].tmp_height = target[i].height;
+//            // 이미지 폭이 테이블 폭보다 크다면 테이블폭에 맞춘다
+//            if(target[i].width > imageWidth) {
+//                imageHeight = parseFloat(target[i].width / target[i].height)
+//                target[i].width = imageWidth;
+//                target[i].height = parseInt(imageWidth / imageHeight);
+//                target[i].style.cursor = 'pointer';
+//
+//                // 스타일에 적용된 이미지의 폭과 높이를 삭제한다
+//                target[i].style.width = '';
+//                target[i].style.height = '';
+//            }
+//
+//            if (borderColor) {
+//                target[i].style.borderWidth = '1px';
+//                target[i].style.borderStyle = 'solid';
+//                target[i].style.borderColor = borderColor;
+//            }
+//        }
+//    }
+//}
+
+/***********************************************************************************
+* 클립보드 복사하기 2016-08-22 승철
+***********************************************************************************/
+
+function is_ie() {
+	if(navigator.userAgent.toLowerCase().indexOf("chrome") != -1) return false;
+	if(navigator.userAgent.toLowerCase().indexOf("msie") != -1) return true;
+	if(navigator.userAgent.toLowerCase().indexOf("windows nt") != -1) return true;
+	return false;
+} 
+function copy_to_clipboard(id, str) {
+	//alert(id +"==="+ str);
+	$("#"+id).focus();
+	if( is_ie() ) {
+		window.clipboardData.setData("Text", str);
+		modal_alert("복사되었습니다.");
+		return;
+	} else {
+		prompt("Ctrl+C를 눌러 복사하세요.", str);
+	}
+}
+
+/***********************************************************************************
+* ajaxGetPage 2017-04-24 승철
+***********************************************************************************/
+function ajaxGetPage(obj, objUrl){
+	$.ajax({
+		type : "get",
+		url : objUrl,
+		data :  {},
+		beforeSend:function(){ //실행되기전 액션  
+			var loading ;
+			loading = ''
+			loading += '<div class="loading_box">';
+			loading += '<div class="loading_panel">';
+			loading += '<div class="img">';
+			loading += '<img src="/_plugin/loading/loading_m.gif" style="margin-top:-38px;margin-left:-38px;" />';
+			//loading += '<img src="/_plugin/loading/loading_s.gif" style="margin-top:-7px;margin-left:-7px;" />';
+			//loading += '<img src="/_plugin/loading/loading_ajax.gif" style="margin-top:-38px;margin-left:-38px;" />';
+			//loading += '<div class="loading_ajax">loading...</div>';
+			loading += '</div>';
+			loading += '</div>';
+			loading += '</div>';
+			$(obj).html(loading);
+		},
+		error : function(result, status){
+			$(obj+" .loading_box").hide();
+			$(obj).html("["+status+"]"+result);
+		},
+		success : function(result, status){
+			$(obj+" .loading_box").hide();
+			$(obj).html(result);
+		}
+	});
+}

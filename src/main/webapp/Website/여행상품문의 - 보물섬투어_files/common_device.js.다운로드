@@ -1,0 +1,45 @@
+/***********************************************************************************
+* divice reaction
+* ready, scroll, addEventListener(load), addEventListener(resize), mobile
+
+https://developers.google.com/webmasters/mobile-sites/mobile-seo/configurations/responsive-design
+http://masonry.desandro.com/
+https://responsiveimages.org/demos/
+***********************************************************************************/
+//mobile brouser reaction
+if(appType=="mobile") {
+	/* mobile brouser search hide */
+	window.addEventListener('load',function() { 
+		setTimeout(scrollTo,0,0,1);
+	}, false);
+
+	//divice rotate
+	/* Detect whether device supports orientationchange event, otherwise fall back to the resize event. */
+	var supportsOrientationChange = "onorientationchange" in window,
+		orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+	var totate;
+	window.addEventListener(orientationEvent, function() {
+		if(window.orientation==0) {
+			totate = 'portrait';
+		} else if(window.orientation==90) {
+			totate = 'landscape';		
+		}
+		//$("#totate").text(totate);
+	}, false);
+}
+if(msie8Less == "no") {
+	/***********************************************************************************
+	* reaction_width
+	***********************************************************************************/
+	//dfefault onload reaction
+	$(document).ready(function() {
+		//var window_w = $(window).width();
+		var window_w = window.innerWidth;
+
+	});
+	//divice resize reaction
+	window.addEventListener("resize", function() {	
+		var window_w = window.innerWidth;
+	});
+} //if(msie8Less == "no")
+/***********************************************************************************/

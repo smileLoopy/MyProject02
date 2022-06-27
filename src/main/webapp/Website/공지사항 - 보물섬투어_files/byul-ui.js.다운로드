@@ -1,0 +1,92 @@
+// (xml)Search autocomplate
+function search_autocomplete() {
+	$.ajax({
+		url: "//"+ document.domain +"/_keyword.xml",
+		dataType: "xml",
+		success: function( xmlResponse ) {
+			var availableTags = $( "keyword", xmlResponse ).map(function() {
+				return {
+					value: $(this).text(),
+					id: $(this).text()
+				};
+			}).get();
+			$( ".availableTags" ).autocomplete({
+				source: availableTags,
+				minLength: 1,
+				matchContains: true,
+				selectFirst: false,
+				autoFocus: false, //first keywoerd value focusing
+				focus: function( event, ui ) {
+					$( ".availableTags" ).val( ui.item.value ); //커서이동시 선택값
+					event.preventDefault();
+					return false;
+				},
+				select: function( event, ui ) {
+					//searchTopKeyword(ui.item.value);
+					searchpageKeyword(ui.item.value);
+				},
+				open: function(){
+					setTimeout(function () {
+						//$('.availableTags').focus();
+					}, 0);
+				}
+			});
+		}
+	});
+}
+/*
+// (json)Search autocomplate
+$(function() {
+	$( ".availableTags" ).autocomplete({
+		source: function( request, response ) {
+			$.ajax({
+				url: 'http://www.bomultour.co.kr/_keyword.json',
+				//data: { mode : "KEYWORDCITYJSON" , keyword : $("#searchTopKeyword").val() },
+				dataType: "json",
+				success: function( data ) {
+					response( $.map( data.keywordlist, function( item ) {
+						if (item.searchTopKeyword.toLowerCase().indexOf($(".availableTags").val().toLowerCase()) >= 0)
+						{
+							return {
+								label: item.searchTopKeyword.toLowerCase().replace($( ".availableTags" ).val().toLowerCase(),"<span style='font-weight:bold;color:Blue;'>" + $( "#searchTopKeyword" ).val().toLowerCase() + "</span>"),
+								value: item.searchTopKeyword,
+								cityCd:item.cityCd,
+								nationCd:item.nationCd
+							}
+						}
+					}));
+				}
+			});
+		},
+		minLength: 1,
+		select: function( event, ui ) {
+				cityValue(ui.item.value);
+		},
+		open: function() {
+			$( this ).autocomplete("widget").width("323px");
+			$( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+		},
+		close: function() {
+			$( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+		},
+		error: function(xhr, ajaxOptions, thrownError){ alert(thrownError);  alert(xhr.responseText); }
+	})
+	.data('uiAutocomplete')._renderItem = function( ul, item ) {
+		return $( "<li style='cursor:hand; cursor:pointer;'></li>" )
+			.data( "item.autocomplete", item )
+			.append("<a onclick=\"cityValue('" + item.value + "');\">"  + unescape(item.label) + "</a>")
+		.appendTo( ul );
+	};
+}
+*/
+function patch_autocomplete() {
+	$.ui.autocomplete.prototype._renderItem = function (ul, item) {
+		var cleanTerm = this.term.replace(/[-\/\\^$*+?.()|[\]{}]/gi, '\\$&');
+		var keywords = $.trim(cleanTerm).replace('  ', ' ').split(' ').join('|');
+		var re = new RegExp("(" + keywords + ")", "gi");
+		var output = item.label.replace(re, '<strong style="color:#ff6867;">$1</strong>');
+		return $("<li style='font-size:14px;'>")
+			.append($("<a>").html(output))
+			.appendTo(ul);
+	};
+}

@@ -1,0 +1,57 @@
+/*
+* 2016-08-26 승철
+* 2016-08-26 1.11.4 (Legacy, for jQuery1.6+) 
+*/
+/* 달력 버튼 이미지 보정*/
+img.ui-datepicker-trigger{width:25px;height:25px;margin-left:-30px;margin-right:5px;cursor:pointer;}
+input.hasDatepicker{width:110px;}
+
+/*Select box color 보정*/
+.ui-selectmenu-text{background-color:#fff}
+
+/* 자동완성 zindex 보정*/
+ul.ui-autocomplete.ui-front{z-index:10000;}
+ul.ui-autocomplete {max-height:300px;overflow:hidden;overflow-y:auto;}
+
+/* 아이콘 height center 보정*/
+.ui-up-3 {margin:-3px 2px 0 0 ;} /*12~13px*/
+.ui-up-5 {margin:-5px 3px 0 0 ;} /*14~15px*/
+
+.btn_ui_red{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_cc0000_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.btn_ui_orange{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_ff6600_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.btn_ui_blue{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_0073ea_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.btn_ui_gray{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_666666_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.btn_ui_pink{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_ff0084_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.btn_ui_white{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_ffffff_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.btn_ui_green{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_4b8e0b_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.btn_ui_silver{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_cccccc_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.btn_ui_brown{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_a83300_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.btn_ui_yellow{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_f9bd01_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+
+.ui-icon-0073ea{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_0073ea_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-2e83ff{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_2e83ff_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-2694e8{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_2694e8_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-3d80b3{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_3d80b3_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-469bdd{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_469bdd_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-6da8d5{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_6da8d5_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-72a7cf{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_72a7cf_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-d8e7f3{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_d8e7f3_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+       
+.ui-icon-222222{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_222222_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-444444{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_444444_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-454545{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_454545_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-555555{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_555555_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-666666{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_666666_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-777777{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_777777_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-cccccc{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_cccccc_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-ffffff{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_ffffff_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+       
+.ui-icon-a83300{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_a83300_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-cc0000{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_cc0000_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-cd0a0a{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_cd0a0a_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-ff6600{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_ff6600_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-ff0084{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_ff0084_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-f9bd01{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_f9bd01_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+       
+.ui-icon-4b8e0b{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_4b8e0b_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}
+.ui-icon-777620{width:14px; height:16px;display:inline-block;overflow:hidden;background:url('images/ui-icons_777620_256x240.png') no-repeat;cursor:pointer;line-height:1000px;vertical-align:middle}

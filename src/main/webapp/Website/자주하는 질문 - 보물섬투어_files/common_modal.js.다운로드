@@ -1,0 +1,246 @@
+/*===================================================================================
+* 2016-10-25 김승철 modal alert
+*  common_check.js > check_value()
+===================================================================================*/
+function modal_alert(str) {
+	$('.modal_alert').remove();
+	$("html").append("<div class='modal_alert'><div class='alert_bg'><div class='alert_layer'><div class='alert_cont radius_25'></div></div></div></div>");
+	var alert = $('.modal_alert');
+	var alert_bg = $('.modal_alert .alert_bg');
+	var layer = $('.modal_alert .alert_layer');
+	var cont = $('.modal_alert .alert_layer .alert_cont');
+
+	cont.html(str);
+	alert.show();	
+
+	/*center*/
+	var alert_layer_width = layer.width()/2 ;
+	var alert_layer_height = layer.height()/2 ;
+	layer.css('margin-left', - alert_layer_width);
+	layer.css('padding', - alert_layer_height);
+
+	setTimeout("$('.modal_alert').remove();",1000);
+
+	alert_bg.click(function(e){
+		$('.modal_alert').remove();
+		e.preventDefault(); /*jquery-ui-*.**.*.custom.min.js*/
+	});
+}
+
+/*===================================================================================
+* 2016-09-01 김승철 layer popup 통합 poppup.css
+===================================================================================*/
+function modal_close(modal,e) {
+	//modal.fadeOut();
+	modal.hide();
+	e.preventDefault(); /*jquery-ui-*.**.*.custom.min.js*/
+	$("html").css("overflow-y","auto");
+	return false;
+}
+function modal_in_close() {
+	//$("#modal").fadeOut();
+	$("#modal").hide();
+	$("html").css("overflow-y","auto");
+}
+function modal_event() {
+	$("html").css("overflow-y","hidden"); //visible, hidden, scroll, auto, no-display, no-content 
+//	$(".modal_bg").on('scroll touchmove mousewheel', function(e) {
+//	   e.preventDefault();
+//	   e.stopPropagation(); 
+//	   return false;
+//	});
+}
+
+function modal(url, width, height, scroll) {
+
+	var modal = $('#modal');
+	var modal_bg = $('#modal .modal_bg');
+	var layer = $('#modal .modal_layer');
+	var cont = $('#modal .modal_layer .modal_cont');
+	var title = $('#modal .modal_layer .modal_cont h3.modal_title');
+	var content = $('#modal .modal_layer .modal_cont .modal_content');
+	//var content = $('#modal .content').height;
+
+	modal.show();
+	//modal.fadeIn();
+	layer.css('width', width);
+	layer.css('height', height);  
+	modal_event();
+	//cont.load(url);	
+	$.ajax({
+		type : "get",
+		url : url,
+		beforeSend:function(){
+			var loading = '<div class="loading_ajax"><div class="loading_n">loading...</div></div>';
+			$("#modal .modal_layer .modal_cont").append(loading);
+		}, 
+		error : function(html, status){
+			$("#modal .modal_layer .modal_cont .loading_ajax").hide();
+			//alert(html+'오류입니다.');
+		},
+		success : function(html, status){
+			$("#modal .modal_layer .modal_cont .loading_ajax").hide();
+			if (html == 'empty') {
+				alert('출발가능한 행사가 없습니다.');
+			} else {
+				cont.html(html);
+			}
+		}
+	});
+
+	if(scroll == "y") {
+		//content.css('height', height-67);
+		layer.css('overflow-y', 'auto');
+	} else {
+		 layer.css('overflow-y', 'hidden')
+	}
+	layer.css('overflow-x', 'hidden');
+
+	var layer_h = layer.height();
+	var content_h = content.height();
+
+	//alert(layer_h +"/"+content_h);
+
+	// center
+	if (height < $(window).height() ) {
+		layer.css('margin-top', -(height/2));
+	} else {
+		layer.css('top', '0');
+	}
+	if (width < $(window).width() ) {
+		layer.css('margin-left', -((width/2) + 2));
+	} else {
+		layer.css('left', '0');
+	}
+
+	modal.find('a.modal_close').click(function(e){
+		modal_close(modal,e);
+	});
+	modal_bg.click(function(e){
+		modal_close(modal,e);
+	});
+}
+
+
+function modal_startlist(site_code, cid, mcode, mcode_seq, air_seq, startday) {
+	//alert(site_code+"/"+cid+"/"+mcode+"/"+mcode_seq+"/"+air_seq+"/"+startday);
+	
+//	var url = "";
+//	url += "/overseas/product.startlist.asp?site_code="+site_code; 
+//	url += "&cid="+cid;
+//	url += "&mcode="+mcode;
+//	url += "&mcode_seq="+mcode_seq;
+//	if(air_seq) url += "&air_seq="+air_seq;
+//	if(startday) url += "&startday="+startday;
+//	//alert(url);
+	
+	var width = '1000';
+	var height = '700';
+	var modal = $('#modal');
+	var layer = $('#modal .modal_layer');
+	var cont = $('#modal .modal_layer .modal_cont');
+	var modal_bg = $('#modal .modal_bg');
+
+	modal.show();
+	//modal.fadeIn();
+	layer.css('width', width);
+	layer.css('height', height);
+	//cont.load(url);
+	modal_event();
+
+	$.ajax({
+		type : "post",
+		url : "/overseas/product.startlist.asp",
+		data :  { "site_code": site_code, "cid": cid, "mcode": mcode, "mcode_seq": mcode_seq, "air_seq": air_seq, "startday" : startday },
+		beforeSend:function(){
+			cont.html("");
+		}, 
+		error : function(html, status){
+			alert(html+'오류입니다.');
+		},
+		success : function(html, status){
+			if (html == 'empty') {
+				alert('출발가능한 행사가 없습니다.');
+			} else {
+				cont.html(html);
+			}
+		}
+	});
+
+
+	// center
+	if (height < $(window).height() ) {
+		layer.css('margin-top', -(height/2));
+	} else {
+		layer.css('top', '0');
+	}
+	if (width < $(window).width() ) {
+		layer.css('margin-left', -((width/2) + 2));
+	} else {
+		layer.css('left', '0');
+	}
+
+	modal.find('a.modal_close').click(function(e){
+		modal_close(modal,e);
+	});
+	modal_bg.click(function(e){
+		modal_close(modal,e);
+	});
+}
+
+function modal_info_spot_detail(spotid) {
+
+	var width = '1000';
+	var height = '700';
+	var modal = $('#modal');
+	var layer = $('#modal .modal_layer');
+	var cont = $('#modal .modal_layer .modal_cont');
+	var modal_bg = $('#modal .modal_bg');
+
+	modal.show();
+	//modal.fadeIn();
+	layer.css('width', width);
+	layer.css('height', height);
+	//cont.load(url);
+	modal_event();
+
+	$.ajax({
+		type : "post",
+		url : "/info/travel/spot_detail_popup.asp",
+		data :  { "spotid": spotid },
+		beforeSend:function(){
+			//loading_s(); 
+			cont.html("");
+		}, 
+		error : function(html, status){
+			alert(html+'오류입니다.');
+		},
+		success : function(html, status){
+			if (html == 'empty') {
+				alert('요청하신 정보가 없습니다.');
+			} else {
+				cont.html(html);
+			}
+		}
+	});
+
+
+	// center
+	if (height < $(window).height() ) {
+		layer.css('margin-top', -(height/2));
+	} else {
+		layer.css('top', '0');
+	}
+	if (width < $(window).width() ) {
+		layer.css('margin-left', -((width/2) + 2));
+	} else {
+		layer.css('left', '0');
+	}
+
+	modal.find('a.modal_close').click(function(e){
+		modal_close(modal,e);
+	});
+	modal_bg.click(function(e){
+		modal_close(modal,e);
+	});
+}

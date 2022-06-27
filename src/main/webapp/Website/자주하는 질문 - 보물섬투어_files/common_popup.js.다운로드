@@ -1,0 +1,95 @@
+/***********************************************************************************
+* popup default
+***********************************************************************************/
+function popup(url,popid) {
+	openwin = window.open (url,popid,'width=100%,height=100%,status=no,scrollbars=1'); 
+	openwin.focus() 
+}
+	
+// default url popup
+function popup_center(){ 
+    var x,y; 
+    if (self.innerHeight) { // IE 외 모든 브라우저 
+        x = (screen.availWidth - self.innerWidth) / 2; 
+        y = (screen.availHeight - self.innerHeight) / 2; 
+    }else if (document.documentElement && document.documentElement.clientHeight) { // Explorer 6 Strict 모드 
+        x = (screen.availWidth - document.documentElement.clientWidth) / 2; 
+        y = (screen.availHeight - document.documentElement.clientHeight) / 2; 
+    }else if (document.body) { // 다른 IE 브라우저( IE < 6) 
+        x = (screen.availWidth - document.body.clientWidth) / 2; 
+        y = (screen.availHeight - document.body.clientHeight) / 2; 
+    } 
+    window.moveTo(x,y); 
+}
+/***********************************************************************************
+* popup
+* encodeURIComponent, escape
+*
+* Used display layer popup = modal
+***********************************************************************************/
+function pop_center(pop_id, pop_center, width, height) {
+	if(pop_center == "Y") {
+		$("#"+pop_id).css('left', '50%').css('top', '50%');
+		$("#"+pop_id).css('margin-left', -(width/2));
+		$("#"+pop_id).css('margin-top', -(height/2));
+	}
+}
+function pop_load(pop_id) { //dispay
+	var getdata = getCookie(pop_id); //common_cookie.js
+	//alert(pop_id +"="+getdata);
+	if ( getdata == "") {
+		$("#"+pop_id).show();
+	} else {
+		$("#"+pop_id).hide();
+	}
+}
+function pop_close_day(pop_id, days) {
+	setCookie(pop_id, "done", days ); //common_cookie.js
+	$("#"+pop_id).hide();
+}
+function pop_close_hour(pop_id, hours) {
+	if(confirm(hours+'시간 동안 보이지 않게 하시겠습니까? ') == true) {
+		setCookie_hour(pop_id, "done", hours); //common_cookie.js
+		$("#"+pop_id).hide();
+	} 
+}
+function pop_close_minute(pop_id, minute) {
+	if(confirm(minute+'분 동안 보이지 않게 하시겠습니까? ') == true) {
+		setCookie_minute(pop_id, "done", minute); //common_cookie.js
+		$("#"+pop_id).hide();
+	} 
+}
+function pop_close_second(pop_id, second) {
+	if(confirm(second+'초 동안 보이지 않게 하시겠습니까? ') == true) {
+		setCookie_second(pop_id, "done", second); //common_cookie.js
+		$("#"+pop_id).hide();
+	} 
+}
+function pop_close(pop_id) {
+	$("#"+pop_id).hide();
+	//2016-09-08 승철 because top promotion closing
+	//snb_right(); //side navigation
+	//snb_left(); //side navigation
+}
+/***********************************************************************************
+// popups
+***********************************************************************************/
+function product_print(depth1, mcodes, scodes, air_seq) {
+	var url = "/"+depth1+"/product_print.asp?mcodes="+mcodes+"&scodes="+scodes+"&air_seq="+air_seq;
+	openwin = window.open (url,'popup','width=740 ,height=700,status=no,scrollbars=yes'); 
+	openwin.focus(); 
+}
+function product_email(mcodes, scodes, air_seq, shortUrl) {
+	var url = "/sendemail/sendemail_product.asp?mcodes="+mcodes+"&scodes="+scodes+"&air_seq="+air_seq+"&shortUrl="+shortUrl;
+	openwin = window.open (url,'popup','width=700 ,height=700,status=no,scrollbars=auto'); 
+	openwin.focus(); 
+}
+function product_qna(mcodes, scodes, air_seq) {
+	var url = "/center/bbs_qna_product/bbs.asp?mode=insert&mcodes="+mcodes+"&scodes="+scodes+"&air_seq="+air_seq;
+	openwin = window.open (url,'popup','width=700 ,height=700,status=no,scrollbars=auto'); 
+	openwin.focus(); 
+}
+function info_spot_detail(spotid) {
+	//modal('/info/travel/spot_detail_popup.asp?spotid='+spotid, '1000', '740', 'y');
+	modal_info_spot_detail(spotid);
+}

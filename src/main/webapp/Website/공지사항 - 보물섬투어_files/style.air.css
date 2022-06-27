@@ -1,0 +1,133 @@
+/*******************************************************************************/
+/* air 2code set ui border:1px solid red */
+/*******************************************************************************/
+.set_air {margin:1px;border:0 solid #ccc;vertical-align:middle;display:inline-block;overflow:hidden;background:url(/_css/img/icon_set_air.png) no-repeat;text-indent:-1000em;}
+.a_KE {width:20px;height:20px;background-position: 0 -20px;}
+.a_OZ {width:20px;height:20px;background-position: -20px -20px;}
+.a_AZ {width:20px;height:20px;background-position: -40px -20px;}
+.a_8B {width:20px;height:20px;background-position: -60px -20px;}
+.a_AA {width:20px;height:20px;background-position: -80px -20px;}
+.a_AC {width:20px;height:20px;background-position: -100px -20px;}
+.a_3U {width:20px;height:20px;background-position: -120px -20px;}
+.a_NZ {width:20px;height:20px;background-position: -140px -20px;}
+.a_SA {width:20px;height:20px;background-position: -160px -20px;}
+.a_SQ {width:20px;height:20px;background-position: -180px -20px;}
+
+.a_VJ {width:40px;height:20px;background-position: 0 -40px;}
+.a_HA {width:20px;height:20px;background-position: -40px -40px;}
+.a_AK {width:40px;height:20px;background-position: -60px -40px;}
+.a_AY {width:20px;height:20px;background-position: -80px -40px;}
+.a_CX {width:20px;height:20px;background-position: -100px -40px;}
+.a_BR {width:20px;height:20px;background-position: -120px -40px;}
+.a_EK {width:20px;height:20px;background-position: -140px -40px;}
+.a_RS {width:20px;height:20px;background-position: -160px -40px;}
+.a_KL {width:20px;height:20px;background-position: -180px -40px;}
+
+.a_EY {width:40px;height:20px;background-position: 0 -60px;}
+.a_LH {width:20px;height:20px;background-position: -40px -60px;}
+.a_VN {width:20px;height:20px;background-position: -60px -60px;}
+.a_MS {width:20px;height:20px;background-position: -80px -60px;}
+.a_3C {width:20px;height:20px;background-position: -100px -60px;}
+.a_7C {width:20px;height:20px;background-position: -100px -60px;}
+.a_QR {width:20px;height:20px;background-position: -120px -60px;}
+.a_PR {width:20px;height:20px;background-position: -140px -60px;}
+.a_AI {width:20px;height:20px;background-position: -160px -60px;}
+.a_TG {width:20px;height:20px;background-position: -180px -60px;}
+
+.a_Z2 {width:40px;height:20px;background-position: 0 -80px;}
+.a_CA {width:20px;height:20px;background-position: -40px -80px;}
+.a_ZE {width:20px;height:20px;background-position: -60px -80px;}
+.a_TZ {width:20px;height:20px;background-position: -80px -80px;}
+.a_AF {width:20px;height:20px;background-position: -100px -80px;}
+.a_QF {width:20px;height:20px;background-position: -120px -80px;}
+.a_CI {width:20px;height:20px;background-position: -140px -80px;}
+.a_TW {width:20px;height:20px;background-position: -160px -80px;}
+.a_5J {width:20px;height:20px;background-position: -180px -80px;}
+
+.a_LA {width:40px;height:20px;background-position: 0 -100px;}
+.a_BA {width:20px;height:20px;background-position: -40px -100px;}
+.a_DL {width:20px;height:20px;background-position: -60px -100px;}
+.a_MF {width:20px;height:20px;background-position: -80px -100px;}
+.a_UA {width:20px;height:20px;background-position: -100px -100px;}
+.a_K6 {width:20px;height:20px;background-position: -120px -100px;}
+.a_QV {width:20px;height:20px;background-position: -140px -100px;}
+.a_TK {width:20px;height:20px;background-position: -160px -100px;}
+.a_ZA {width:20px;height:20px;background-position: -180px -100px;}
+
+.a_BX {width:40px;height:20px;background-position: 0 -120px;}
+.a_SU {width:20px;height:20px;background-position: -40px -120px;}
+.a_LJ {width:20px;height:20px;background-position: -60px -120px;}
+.a_JL {width:20px;height:20px;background-position: -80px -120px;}
+.a_GA {width:20px;height:20px;background-position: -100px -120px;}
+.a_HY {width:20px;height:20px;background-position: -120px -120px;}
+.a_MH {width:20px;height:20px;background-position: -140px -120px;}
+.a_MU {width:20px;height:20px;background-position: -160px -120px;}
+.a_CZ {width:20px;height:20px;background-position: -180px -120px;}
+
+.a_OX {width:40px;height:20px;background-position: 0 -140px;}
+.a_FM {width:20px;height:20px;background-position: -40px -140px;}
+.a_NX {width:20px;height:20px;background-position: -60px -140px;}
+.a_OK {width:20px;height:20px;background-position: -80px -140px;}
+.a_SH {width:20px;height:20px;background-position: -100px -140px;}/*ship*/
+.a_TR {width:20px;height:20px;background-position: -120px -140px;}/*train*/
+.a_BU {width:20px;height:20px;background-position: -140px -140px;}/*bus*/
+.a_AU {width:20px;height:20px;background-position: -160px -140px;}/*car*/
+.a_KW {width:20px;height:20px;background-position: -180px -140px;}
+
+
+.a_NW {width:40px;height:20px;background-position: 0 -160px;}
+.a_XJ {width:20px;height:20px;background-position: -40px -160px;}
+.a_ET {width:20px;height:20px;background-position: -60px -160px;}
+.a_AM {width:20px;height:20px;background-position: -80px -160px;}
+.a_LX {width:20px;height:20px;background-position: -100px -160px;}
+.a_QD {width:20px;height:20px;background-position: -120px -160px;}
+.a_8Y {width:20px;height:20px;background-position: -140px -160px;}
+.a_HX {width:20px;height:20px;background-position: -160px -160px;}
+.a_KQ {width:20px;height:20px;background-position: -180px -160px;}
+
+.a_JQ {width:40px;height:20px;background-position: 0 -180px;}
+.a_NH {width:40px;height:20px;background-position: -40px -180px;}
+.a_9W {width:40px;height:20px;background-position: -60px -180px;}
+.a_OM {width:20px;height:20px;background-position: -80px -180px;}
+.a_PG {width:20px;height:20px;background-position: -100px -180px;}
+.a_QH {width:20px;height:20px;background-position: -140px -180px;}
+.a_VA {width:20px;height:20px;background-position: -160px -180px;}
+.a_SC {width:20px;height:20px;background-position: -180px -180px;}
+
+.a_BI {width:40px;height:20px;background-position: 0 -200px;}
+.a_S7 {width:20px;height:20px;background-position: -40PX -200px;}
+.a_LO {width:20px;height:20px;background-position: -60PX -200px;}
+.a_KC {width:20px;height:20px;background-position: -80PX -200px;}
+.a_R3 {width:40px;height:20px;background-position: -100PX -200px;}
+.a_GS {width:20px;height:20px;background-position: -140PX -200px;}
+.a_QW {width:20px;height:20px;background-position: -160PX -200px;}
+.a_9C {width:20px;height:20px;background-position: -180PX -200px;}
+
+.a_IT {width:40px;height:20px;background-position: 0 -220px;}
+.a_HR {width:20px;height:20px;background-position: -40PX -220px;}
+.a_BL {width:40px;height:20px;background-position: -60PX -220px;}
+
+/*선박공용*/
+.a_65 {width:20px;height:20px;background-position: -100px -140px;} /*(C65)뉴카멜리아*/
+.a_66 {width:20px;height:20px;background-position: -100px -140px;} /*(C66)단동훼리*/
+.a_67 {width:20px;height:20px;background-position: -100px -140px;} /*(C67)드림플라워호*/
+.a_69 {width:20px;height:20px;background-position: -100px -140px;} /*(C69)비틀*/
+.a_70 {width:20px;height:20px;background-position: -100px -140px;} /*(C70)석도국제훼리*/
+.a_71 {width:20px;height:20px;background-position: -100px -140px;} /*(C71)세코마루 그랜드 페리*/
+.a_72 {width:20px;height:20px;background-position: -100px -140px;} /*(C72)오션플라워호*/
+.a_73 {width:20px;height:20px;background-position: -100px -140px;} /*(C73)위동훼리*/
+.a_74 {width:20px;height:20px;background-position: -100px -140px;} /*(C74)진인훼리*/
+.a_75 {width:20px;height:20px;background-position: -100px -140px;} /*(C75)진천훼리*/
+.a_76 {width:20px;height:20px;background-position: -100px -140px;} /*(C76)코비*/
+.a_77 {width:20px;height:20px;background-position: -100px -140px;} /*(C77)퀸텀 오브 더 시즈*/
+.a_78 {width:20px;height:20px;background-position: -100px -140px;} /*(C78)팬스타*/
+.a_80 {width:20px;height:20px;background-position: -100px -140px;} /*(C80)화동훼리*/
+.a_81 {width:20px;height:20px;background-position: -100px -140px;} /*(C81)코스타 세레나호*/
+.a_82 {width:20px;height:20px;background-position: -100px -140px;} /*(C82)니나호*/
+.a_83 {width:20px;height:20px;background-position: -100px -140px;} /*(C83)오로라호*/
+.a_84 {width:20px;height:20px;background-position: -100px -140px;} /*(C84)블루쓰시마호*/
+.a_CR {width:20px;height:20px;background-position: -100px -140px;} /*(CR)크루즈*/
+.a_DB {width:20px;height:20px;background-position: -100px -140px;} /*(C01)DBS크루즈*/
+.a_HM {width:20px;height:20px;background-position: -100px -140px;} /*(C79)하모니크루즈*/
+.a_SH {width:20px;height:20px;background-position: -100px -140px;} /*(986)선박*/
+.a_SI {width:20px;height:20px;background-position: -100px -140px;} /*(C68)부관훼리*/

@@ -1,0 +1,476 @@
+//www=mobile
+/***************************************************************************************************
+// 유효성체크1(input)
+***************************************************************************************************/
+// 기본적인 입력창 체크
+function check_value(field,msg) {
+	//if ( field.value == "") { alert(msg); field.focus(); return true; }
+	if ( field.value == "") {
+		modal_alert(msg); //common_modal.js
+		field.focus(); 
+		return true;
+	}
+}
+// 셀렉트박스 체크
+function check_selected(field, msg) {
+	if(field.selectedIndex == 0) {
+		modal_alert(msg);
+		field.focus() ;
+		return true;
+	} else {
+		return false;
+	}
+}
+// 라디오버튼 체크
+function check_radio(field, msg) {
+	if ( field == null ) { alert(msg); return true;	}
+	if ( field.length == null ) {
+		if ( field.checked == true ) {
+			return false;
+		} else {
+			modal_alert(msg);
+			return true;
+		}
+	}
+	for(i = 0; i < field.length; i++) {
+		if(field[i].checked == true) { return false; }
+	}
+	modal_alert(msg);
+	return true;
+}
+// 글자수 체크
+function CheckLen(frm,cnt1,cnt2) {
+	var frm
+	if(frm.value.length < cnt1 || frm.value.length > cnt2) {
+		return false;
+	}
+	for(var i = 0; i < frm.value.length; i++) {
+		var chr = frm.value.substr(i,1);
+		if(
+			(chr < '0' || chr > '9')
+			 && (chr < 'a' || chr > 'z') 
+			 && (chr < 'A' || chr > 'Z') 
+			 && (chr < 'ㄱ' || chr > '힣')
+			// && (chr != '^' ||chr != '$' || chr != '+' || chr != '#' || chr != '!' || chr != '<' || chr != '>' || chr != '[' || chr != '{' || chr != '}')
+		) {
+			return false;
+		}
+	}
+	return true;
+}
+
+/***************************************************************************************************
+// 유효성체크2(input)
+***************************************************************************************************/
+function check_patern_id(obj, id) {
+
+	//소문자,대문자,숫자, 지정특수문자 가능(그외 불가)
+	var pattern = /[^A-Za-z0-9!@#$%^&*()_]/g; 
+
+	var result = pattern.test(id); //test
+	if (result == true) {
+		var val = id.replace(pattern, '')
+		$("#"+obj).val(val);
+		modal_alert("영문+숫자+지정기호(!,@,#,$,%,^,&,*,_)만 사용가능");
+	}
+}
+/***************************************************************************************************
+* 해킹방지용 특수기호 체크(input)
+***************************************************************************************************/
+function keywordstrCheck(frm) {
+	for (var i=0 ; i < frm.value.length ; i ++ ) {
+		var chr=frm.value.substring( i,  i + 1 );
+		if (chr=="?"||chr=="$"||chr=="\'"||chr=="\""||chr=="<"||chr==">"||chr=="`"||chr=="^"||chr=="&"||chr=="!"||chr=="--"||chr=="~") {
+			//alert("?, 콤마(,), $, \', \", <, >, `, ^, &, !, --, ~등의 기호는 사용하실 수 없습니다.\n[ "+chr+" ] 를 제외하고 입력하세요");
+			//frm.value = frm.value.replace(chr, "");
+			alert("[ "+chr+" ]는 사용하실 수 없습니다.\n\ ?, $, \', \", <, >, `, ^, &, !, --, ~등의 기호는 사용하실 수 없습니다");
+			frm.value = "";
+			frm.focus();
+			return false;
+		}
+	}
+}
+/***************************************************************************************************
+* Caps Lock CHECK
+***************************************************************************************************/
+function checkCapsLock(e) {
+    var KeyCode=0;
+    var ShiftKey=false;
+    var keymsg='Caps Lock 키가 켜져 있습니다.\n\nCaps Lock 키를 끄고 입력해주시기 바랍니다.';
+    if ( document.all ) { // Internet Explorer 4+
+        KeyCode=e.keyCode;
+        ShiftKey=e.shiftKey;
+    } else if ( document.layers ) { // Netscape 4
+        KeyCode=e.which;
+        ShiftKey=( KeyCode == 16 ) ? true : false; 
+    } else if ( document.getElementById ) { // Netscape 6
+        KeyCode=e.which;
+        ShiftKey=( KeyCode == 16 ) ? true : false;
+    }
+    if ( ( KeyCode >= 65 && KeyCode <= 90 ) && !ShiftKey ) {
+        alert( keymsg );
+    } else if ( ( KeyCode >= 97 && KeyCode <= 122 ) && ShiftKey ) {
+        alert( keymsg );
+    }
+}
+
+/***************************************************************************************************
+* 단위체크
+***************************************************************************************************/
+//천단위 콤마1 (script내 계산에 사용함) 
+function add_comma_js(obj){
+	var str=new Array();
+	obj=String(obj);
+	for(var i=1;i<=obj.length;i++){
+		if(i%3) str[obj.length-i]=obj.charAt(obj.length-i); //자리수가 아니면 숫자만삽입 
+		else str[obj.length-i]=','+obj.charAt(obj.length-i); //자리수 이면 콤마까지 삽입 
+	} 
+	var price = str.join('').replace(/^,/,''); //스트링을 조합하여 반환 
+	return price;
+} 
+//천단위 콤마2(html inputbox 적용)
+function add_comma_input(obj) {
+    if (event.keyCode == 37 || event.keyCode == 39 ) { //방향키 인식하게..
+        alert("keyCode = "+event.keyCode);
+    }
+    else {
+        var str = obj.value;
+        var nRtn="";
+        var Dotcount = 0;
+        var strTmp = new Array();
+        for ( var i=0; i < str.length; i++ ) {
+            strTmp[i] = str.charCodeAt(i);
+            if ( (str.charCodeAt(i) > 47 && str.charCodeAt(i) < 58) || str.charCodeAt(i) == 45 || str.charCodeAt(i) == 46 ) {
+                if ( str.charCodeAt(i) == 46 ) {  // 도트가 입력되었을 경우
+                    Dotcount++;
+                    if ( Dotcount > 1 ){ //도트가 두번이상 표기 되었는지확인하다.
+                        break;
+                    }
+                    if(i == 0 ) {    //도트가 맨앞에 오지 않았는지 확인한다.
+                        break;
+                    }
+                    if(strTmp[0] == 45 && strTmp[1] == 46) {    //마이너스 다음에 도트가 왔을 경우
+                        break;
+                    }
+                }
+                nRtn = nRtn+str.charAt(i);
+            }
+        }
+        obj.value = nRtn;
+
+        var tmp = str.split(".");
+        if( tmp.length > 1 ){   //소수점 입력시 분리
+            var strInt = str.split(".")[0];
+            var strFloat = "." + str.split(".")[1];
+        }else{
+            var strInt = str;
+            var strFloat = "";
+        }
+        //콤마 제거
+        re = /,/g;
+        strInt = strInt.replace(re, "");
+        fl=""
+        if(isNaN(strInt)) {
+        //  alert("문자는 사용할 수 없습니다.");
+            return 0
+        }
+
+        if(strInt==0) return strInt
+
+        if(strInt<0){
+            strInt=strInt*(-1)
+            fl="-"
+        }else{
+            strInt=strInt*1 //처음 입력값이 0부터 시작할때 이것을 제거한다.
+        }
+
+        strInt = new String(strInt)
+        temp=""
+        co=3
+        strInt_len=strInt.length
+        while (strInt_len>0){
+            strInt_len=strInt_len-co
+            if(strInt_len<0){co=strInt_len+co;strInt_len=0}
+            temp=","+strInt.substr(strInt_len,co)+temp
+        }
+        obj.value =  fl+temp.substr(1)+strFloat;
+    }
+}
+
+/*
+사용유무체크
+*/
+
+//####################################################################################
+/* ** List
+ * 1.숫자체크 함수
+ * 2.공백문자열 체크함수
+ * 3.개체 포커스 자동이동 함수
+ * 4.이메일체크 함수
+ * 5.주민번호 체크 함수
+ * 6.핸드폰번호체크 함수
+ */
+
+/* 1.숫자체크 - 숫자만 */
+
+function only_num(){
+  if(event.keyCode != 13){
+    if((event.keyCode < 48)||(event.keyCode > 57)){
+	  alert("숫자만 입력가능합니다.");
+	  event.returnValue = false;
+	}
+  }
+}
+/* 
+* 숫자영문체크 -영문+숫자만 
+* onBlur="only_num_en(this)";
+*/
+function only_num_en(field) {
+	var valid = "abcdefghijklmnopqrstuvwxyz0123456789"
+	var ok = "yes";
+	var temp;
+	for (var i=0; i<field.value.length; i++) {
+		temp = "" + field.value.substring(i, i+1);
+		if (valid.indexOf(temp) == "-1") ok = "no";
+	}
+	if (ok == "no") {
+		alert("영문자와 숫자만 입력할 수 있습니다");
+		field.focus();
+		field.select();
+   }
+}
+/* 2.공백문자열 체크함수 */
+function checkstr(j_original, j_find, j_change){
+  var position, strori_Length;
+
+  position = j_original.indexOf(j_find);
+  while (position != -1){
+    j_original = j_original.replace(j_find, j_change);
+	position = j_original.indexOf(j_find);
+  }
+  strori_Length = j_original.length;
+  return strori_Length;
+}
+
+/* 3.개체 포커스 자동이동 함수 */
+function movenext(sName_tmp,nName_tmp,sMax){
+  var sName;
+  var nName;
+  var sCount;
+  var nCount;
+  var sMax =parseFloat(sMax);
+
+  sName = sName_tmp;
+  nName = nName_tmp;
+  var sLength=document.frmLogin.elements.length -1;8
+
+  for( i=0; i<= sLength; i++ ){
+	  if(document.frmLogin.elements[i].name==sName){
+		  sCount = i ;
+		  break;
+	  }
+  }
+
+  for( i=0; i<= sLength; i++ ){
+	  if(document.frmLogin.elements[i].name==nName){
+		  nCount = i ;
+		  break;
+	  }
+  }
+
+  var sCnt=parseFloat(sCount);
+  var nCnt=parseFloat(nCount);
+  var sMax =parseFloat(sMax);
+				
+  if(event.keyCode ==13){
+	  document.frmLogin.elements[nCnt].focus();
+  } else if (document.frmLogin.elements[sCnt].value.length == sMax){
+	  	document.frmLogin.elements[nCnt].focus();
+  }
+}
+
+/* * 4.이메일체크 함수 */
+function checkmail(strMail) { 
+  var check1 = /(@.*@)|(\.\.)|(@\.)|(\.@)|(^\.)/;  
+  var check2 = /^[a-zA-Z0-9\-\.\_]+\@[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,4})$/; 
+     
+  if ( !check1.test(strMail) && check2.test(strMail) ) { 
+    return true; 
+  } else { 
+    return false; 
+  } 
+}
+
+/* 5. 주민번호 체크 함수 */
+function js_CheckRegiNo(j_regi1, j_regi2){
+	var rtn  = false;
+	var num  = j_regi1 + j_regi2;
+	var ssn1 = num.substring(0, 6);
+	var ssn2 = num.substring(6, 13);
+
+	if((ssn1.length == 6) && (ssn2.length == 7)){
+		var ssn = ssn1 + ssn2;
+		a = new Array(13);
+		for(var i=0; i < 13; i++){
+			a[i] = parseInt(ssn.charAt(i));
+		}
+		var k = 11 - (((a[0] * 2) + (a[1] * 3) + (a[2] * 4) + (a[3] * 5) + (a[4] * 6) + (a[5] * 7)
+			  + (a[6] * 8) + (a[7] * 9) + (a[8] * 2) + (a[9] * 3) + (a[10] * 4) + (a[11] * 5)) % 11);
+
+		if(k > 9){
+			k -= 10;
+		}
+		if(k == a[12]){
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		return false;
+	}
+}
+
+
+/* 6.핸드폰번호체크 함수 */
+function hpCheck(obj1,obj2,obj3){
+    var hp1 = obj1.value.replace(' ','');
+    var hp2 = obj2.value.replace(' ','');
+    var hp3 = obj3.value.replace(' ','');
+    
+    var arr_hp2 = new Array(hp2.length);
+    var arr_hp3 = new Array(hp3.length);
+    var i=0;
+    for (i=0;i<hp2.length;i++){
+     arr_hp2[i] = hp2.charAt(i);
+    }
+    for (i=0;i<hp3.length;i++){
+     arr_hp3[i] = hp3.charAt(i);
+    }    
+ 
+    if (!checkNum(obj2))
+     return false;
+
+    if (hp2.length <=2)
+     return false;
+ 
+    if (!checkNum(obj3))
+     return false;  
+    if (hp3.length !=4)
+     return false;      
+    
+
+    if (hp1 == '010')
+    {
+     if (hp2.length == 4)
+      return true;
+     else
+      return false;
+    }else if (hp1 == '011' || hp1 == '016' || hp1 == '017' || hp1 == '018' || hp1 == '019'){
+     if (arr_hp2[0] == '1' || arr_hp2[0]=='9')
+     {
+      if (hp2.length == 4)
+       return true;
+      else
+       return false;
+     }else if (arr_hp2[0] == '0'){
+      return false;
+     }else{
+       if (hp2.length == 3)
+       return true;
+      else
+       return false;     
+     }
+    }
+    return true;
+}
+/*2017-04-11 승철 랜덤비번생성*/
+function randomNum(n){
+	var count = n;
+	var rand = ['0','1','2','3','4','5','6','7','8','9'];
+	var randNum;
+	for (i = 0; i < count ; i++) {
+		randNum = randNum + rand[Math.floor(Math.random() * 16)];
+	}
+	return randNum;
+}
+function randomStr(n){
+	var count = n;
+	var rand = ['0','1','2','3','4','5','6','7','8','9',
+	'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+	var randStr = '';
+	for (i = 0; i < count ; i++) {
+		randStr = randStr + rand[Math.floor(Math.random() * 16)];
+	}
+	return randStr;
+}
+
+
+/*20150729 전호석 숫자 유효성 체크*/
+function SetNum(obj){
+	val=obj.value;
+	re=/[^0-9]/gi;
+	alert("숫자만 입력해 주세요");
+	obj.value=val.replace(re,"");
+}
+
+
+/***********************************************************************************
+* base64Encode
+* 20150609 전호석 base64 인코딩
+***********************************************************************************/
+var enc64List, dec64List; 
+function initBase64() { 
+    enc64List = new Array(); 
+    dec64List = new Array(); 
+    var i; 
+    for (i = 0; i < 26; i++) { 
+        enc64List[enc64List.length] = String.fromCharCode(65 + i); 
+    } 
+    for (i = 0; i < 26; i++) { 
+        enc64List[enc64List.length] = String.fromCharCode(97 + i); 
+    } 
+    for (i = 0; i < 10; i++) { 
+        enc64List[enc64List.length] = String.fromCharCode(48 + i); 
+    } 
+    enc64List[enc64List.length] = "+"; 
+    enc64List[enc64List.length] = "/"; 
+    for (i = 0; i < 128; i++) { 
+        dec64List[dec64List.length] = -1; 
+    } 
+    for (i = 0; i < 64; i++) { 
+        dec64List[enc64List[i].charCodeAt(0)] = i; 
+    } 
+} 
+
+function base64Encode(str) { 
+	initBase64(); 
+    var c, d, e, end = 0; 
+    var u, v, w, x; 
+    var ptr = -1; 
+    var input = str.split(""); 
+    var output = ""; 
+    while(end == 0) { 
+        c = (typeof input[++ptr] != "undefined") ? input[ptr].charCodeAt(0) :  
+            ((end = 1) ? 0 : 0); 
+        d = (typeof input[++ptr] != "undefined") ? input[ptr].charCodeAt(0) :  
+            ((end += 1) ? 0 : 0); 
+        e = (typeof input[++ptr] != "undefined") ? input[ptr].charCodeAt(0) :  
+            ((end += 1) ? 0 : 0); 
+        u = enc64List[c >> 2]; 
+        v = enc64List[(0x00000003 & c) << 4 | d >> 4]; 
+        w = enc64List[(0x0000000F & d) << 2 | e >> 6]; 
+        x = enc64List[e & 0x0000003F]; 
+        if (end >= 1) {x = "=";} 
+        if (end == 2) {w = "=";} 
+        if (end < 3) {output += u + v + w + x;} 
+    } 
+    var formattedOutput = ""; 
+    var lineLength = 76; 
+    while (output.length > lineLength) { 
+     formattedOutput += output.substring(0, lineLength) + "\n"; 
+     output = output.substring(lineLength); 
+    } 
+    formattedOutput += output; 
+    return formattedOutput; 
+
+} 

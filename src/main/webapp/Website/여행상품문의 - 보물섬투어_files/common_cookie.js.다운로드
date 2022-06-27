@@ -1,0 +1,121 @@
+/*==========================================================================
+Cookie test
+==========================================================================*/
+function cookie_test(cook_val) {
+	var cook = document.cookie;
+	var todayDate = new Date();
+	var gettime = getCookie(cook_val) - todayDate.getTime()
+	var cookie_result;
+
+	cookie_result = "";
+	cookie_result += "["+cook_val+"]["+getCookie(cook_val)+"]["+cook.indexOf(cook_val)+"]";
+	if (gettime > 0 ) {
+		cookie_result += " - This Cookie is ING ["+gettime+"] <a href='#' onclick=\"javascript:delCookie('"+cook_val+"');\">[DEL]</a>";
+	} else {
+		cookie_result += " - This Cookie is END ["+gettime+"]";
+	}
+	document.write(cookie_result+"<br>");
+	//document.write(unescape(cook)+"<br>");
+}	
+//cookie_test("popup_42");
+/*==========================================================================
+Cookie default
+==========================================================================*/
+function setCookie( name, value, expire_days ) {
+	var todayDate = new Date();
+	var endDate = todayDate.setDate( todayDate.getDate() + expire_days );
+	if (value == "done") value = endDate;
+	document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+}
+function setCookie_hour( name, value, expire_hour ) {
+	var todayDate = new Date();
+	var endDate = todayDate.setTime( todayDate.getTime() + (expire_hour*1000*3600));
+	if (value == "done") value = endDate;
+	document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+}
+function setCookie_minute( name, value, expire_minute ) {
+	var todayDate = new Date();
+	var endDate = todayDate.setTime( todayDate.getTime() + (expire_minute*1000*60));
+	if (value == "done") value = endDate;
+	document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+}
+function setCookie_second( name, value, expire_second ) {
+	var todayDate = new Date();
+	var endDate = todayDate.setTime( todayDate.getTime() + (expire_second*1000));	
+	if (value == "done") value = endDate;
+	document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+}
+function getCookie(key){
+	var cook = document.cookie + ";";
+	if(cook.indexOf(key+";") != -1 || cook.indexOf(key) == -1) {
+		var val = "";
+	} else {
+		var idx =  cook.indexOf(key, 0);
+		if(idx != -1){
+			cook = cook.substring(idx, cook.length);
+			begin = cook.indexOf("=", 0) + 1;
+			end = cook.indexOf(";", begin);
+			val = unescape(cook.substring(begin, end) );
+		}
+	}
+	return val;
+}
+function delCookie(name) {
+	//alert("Deleted Cookie "+name);
+	setCookie(name, "", -1 );
+	location.reload();
+}
+/*==========================================================================
+Cookie todayview products
+2017-02-08, 승철
+==========================================================================*/
+function GetCookie_todayview_cnt() {
+	var todayview_cnt = 0;
+	var cKey = "todayview";
+	var allcookies = document.cookie;
+	var cookies = allcookies.split("; ");
+	for (var i = 0; i < cookies.length; i++) {
+		var keyValues = cookies[i].split("=");
+		if (keyValues[0] == cKey) {
+			todayview_list = decodeURIComponent(keyValues[1]);
+			todayview_list = todayview_list.slice(0,-1)
+			todayview_list = todayview_list.split("|");
+			todayview_cnt = todayview_list.length;
+		}
+	}
+	return todayview_cnt;
+}
+function setCookie_todayview(scode, scode_seq) { 
+	var name = "todayview";
+	var tour_scode = scode+"-"+scode_seq ;
+	var scodeArr = getCookie(name);
+	var overlap_scode = scodeArr.indexOf(tour_scode);
+	if (overlap_scode < 0) {
+		value = tour_scode+"|"+scodeArr;
+		var todayDate = new Date();
+		todayDate.setDate( todayDate.getDate() + 1 );
+		document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+	}
+}
+function delCookie_todayview(scode, scode_seq) { 
+	var name = "todayview";
+	var tour_scode = scode+"-"+scode_seq ;
+	var scodeArr = getCookie(name);
+
+	scodeArr2 = scodeArr.slice(0,-1)
+	scode_split = scodeArr2.split('|');
+	scode_cnt = scode_split.length;
+
+	if (scode_cnt > 1) {
+		value = scodeArr.replace(tour_scode+'|', '');
+		var todayDate = new Date();
+		todayDate.setDate( todayDate.getDate() + 1 );
+		document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+
+		$("#todayview-"+tour_scode).hide();
+		//$('.todayview_cnt').attr(scode_cnt -1);
+
+	} else {
+		delCookie(name);
+	}
+}
