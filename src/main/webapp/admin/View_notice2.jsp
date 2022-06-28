@@ -5,12 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>파일 첨부형 게시판</title>
+<title>상세보기 View_notice 웹사이트쪽</title>
+<!-- BootStrap CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+<div class="container mt-3" style="margin-bottom: 50px;">
 <h2>공지사항</h2>
-
-<table border="1" width="90%">
+<table class="table table-striped">
     <colgroup>
         <col width="15%"/> <col width="35%"/>
         <col width="15%"/> <col width="*"/>
@@ -69,11 +72,12 @@
         <td colspan="4" align="center">
         		<!-- 수정하기, 삭제하기 pass.do 라고 있는 이유는 누가 쓴지 모르기에... pass으로만 확인 가능
         		근데 수정인지 삭제인지 어떻게앎? => mode 파라미터 넣음 -->
-            <button type="button" onclick="location.href='../mynotice/list_notice2.do';">
+            <button class="btn btn-outline-dark" type="button" onclick="location.href='../mynotice/list_notice2.do';">
                 목록 바로가기
             </button>
         </td>
     </tr>
 </table>
+</div>
 </body>
 </html>

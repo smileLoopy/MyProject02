@@ -2,27 +2,20 @@
 	pageEncoding="UTF-8"%>
 	
 
-<!-- Website side cdn fiels -->
+<!-- Website css  -->
 <!-- Bootstrap Core CSS -->
-<link href="<%=request.getContextPath()%>/admin/css2/bootstrap.min.css" rel="stylesheet" type="text/css">
-<!-- 절대경로 -->
-<link href="<%=request.getContextPath()%>/admin/css2/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/Website/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
 <!-- Custom CSS -->
-<link href="<%=request.getContextPath()%>/admin/css2/style.css" rel="stylesheet">
-<!-- 절대경로 -->
-<link href="<%=request.getContextPath()%>/admin/css2/style.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/Website/css/style.css" rel="stylesheet">
 <link rel="stylesheet" href="fonts/stylesheet.css">
-<link href="<%=request.getContextPath()%>/admin/css2/mb-comingsoon-iceberg.css" rel="stylesheet" />
-<!-- 절대경로 -->
-<link href="<%=request.getContextPath()%>/admin/css2/mb-comingsoon-iceberg.css" rel="stylesheet" />
-
+<link href="css/mb-comingsoon-iceberg.css" rel="stylesheet" />
 <!-- Custom Fonts -->
-<link href="<%=request.getContextPath()%>/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-<!-- jQuery and Modernizr -->
-<script src="<%=request.getContextPath()%>/admin/js2/jquery-2.1.1.js"></script>
-<script src="<%=request.getContextPath()%>/admin/js2/modernizr.custom.97074.js"></script>
+<link href="<%=request.getContextPath()%>/Website/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!-- jQuery and Modernizr-->
+<script src="<%=request.getContextPath()%>/Website/js/jquery-2.1.1.js"></script>
+<!-- 이거 파일에 없는데? -->
+<script src="<%=request.getContextPath()%>/Website/js/modernizr.custom.97074.js"></script>
 <!-- 헤더 시작 -->
 <!-- <header class="sub-header">  이 부분은 페이지마다 삽입한다.-->
 <!-- /////////////////////////////////////////Navigation -->

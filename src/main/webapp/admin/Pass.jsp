@@ -18,9 +18,13 @@
 		
 	}
 </script>
+<!-- BootStrap CDN -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<h2>파일 첨부형 게시판 - 패스워드검증(Pass)</h2>
+<div class="container mt-3" style="margin-bottom: 50px;">
+<h2>패스워드 검증 (어드민쪽 Q&A)</h2>
 <form name="writeFrm" method="post" action="../myboard/pass.do" onsubmit="return validateForm(this);">
 <!--  
 해당 요청명으로 넘어온 파라미터는 컨트롤러에서 받은 후 request영역에 저장하여 
@@ -34,27 +38,33 @@ View에서 확인할 수 있지만, EL을 이용하면 해당 과정없이 param
 -->
 <%-- <input type="hidden"  name="idx"	value="${param.idx }"/>
  --%>
-<input type="hid-den"  name="idx"	value="${idx }"/>
+<input type="hidden"  name="idx"	value="${idx }"/>
 <!-- 아까 controller에서 request 영역에 set 했으니까 -->
-<input type="hidd-en"  name="mode"	value="${mode }"/>
-<table border="1" width="90%">
-	<tr>
-		<td>비밀번호</td>
-		<td>
-			<input type="password" name="pass" style="width:100px;" />
-		</td>
-	</tr>
-	
-	<tr>
-		<td colspan="2" align="center">
-			<button type="submit">작성완료</button>
-			<button type="reset">RESET</button>
-			<button type="button" onclick="location.href='../myboard/list.do';">목록 바로가기</button>
-		</td>
-	</tr>
+<input type="hidden"  name="mode"	value="${mode }"/>
+<table class="table">
+	<thead class="table-dark" align="center">
+		<tr>
+			<td>비밀번호</td>
+		</tr>
+  </thead>
+	 <tbody align="center">
+	 	<tr>
+			<td>
+				<input type="password" name="pass" style="width:100px;" />
+			</td>
+	 	</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<button type="submit" class="btn btn-outline-dark">작성완료</button>
+				<button type="reset" class="btn btn-outline-danger">RESET</button>
+				<button type="button" onclick="location.href='../myboard/list.do';" class="btn btn-outline-primary" >목록 바로가기</button>
+			</td>
+		</tr>
+	 </tbody>
 
 </table>
 </form>	
+</div>
 </body>
 </html>
 

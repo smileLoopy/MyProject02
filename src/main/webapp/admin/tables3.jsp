@@ -10,84 +10,63 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Tables - SB Admin</title>
+<title>Q&A 게시판</title>
+<style type="text/css">
+input[type=submit] {
+    padding:5px; 
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+#btnWrite{
+	margin-bottom: 15px;
+}
 
+
+</style>
+<!-- 폰트어썸 cdn -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
+<!-- bootstrap cdn-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- admin css-->
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/admin/css/styles.css" rel="stylesheet" />
-<!-- css 절대경로 -->
-<link href="<%=request.getContextPath()%>/admin/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-<script src="<%=request.getContextPath()%>/admin/js/jquery-2.1.1.js"></script>
-<script src="<%=request.getContextPath()%>/admin/js/modernizr.custom.97074.js"></script>
 
-
-
-<!-- Website side cdn fiels -->
+<!-- Website css => 문제점: Website 템플릿 까지 합치면 뭔가 겹침. => 그래서 페이징이 삐뚤어짐.
+	+) header쪽에 템플릿 절대경로 지정하고 이쪽 파일에서 경로 지정 안하면 또 안나옴.
+	+) admin 쪽으로 복사한 website css 파일만 돌려도 안나옴.
+-->
 <!-- Bootstrap Core CSS -->
-<link href="<%=request.getContextPath()%>/admin/css2/bootstrap.min.css" rel="stylesheet" type="text/css">
-<!-- 절대경로 -->
-<link href="<%=request.getContextPath()%>/admin/css2/bootstrap.min.css" rel="stylesheet" type="text/css">
-
+<%-- <link href="<%=request.getContextPath()%>/Website/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <!-- Custom CSS -->
-<link href="<%=request.getContextPath()%>/admin/css2/style.css" rel="stylesheet">
-<!-- 절대경로 -->
-<link href="<%=request.getContextPath()%>/admin/css2/style.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/Website/css/style.css" rel="stylesheet">
 <link rel="stylesheet" href="fonts/stylesheet.css">
-<link href="<%=request.getContextPath()%>/admin/css2/mb-comingsoon-iceberg.css" rel="stylesheet" />
-<!-- 절대경로 -->
-<link href="<%=request.getContextPath()%>/admin/css2/mb-comingsoon-iceberg.css" rel="stylesheet" />
-
+<link href="<%=request.getContextPath()%>/Website/css/mb-comingsoon-iceberg.css" rel="stylesheet" />
 <!-- Custom Fonts -->
-<link href="<%=request.getContextPath()%>/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-<!-- jQuery and Modernizr -->
-<script src="<%=request.getContextPath()%>/admin/js2/jquery-2.1.1.js"></script>
-<script src="<%=request.getContextPath()%>/admin/js2/modernizr.custom.97074.js"></script>
-
-
+<link href="<%=request.getContextPath()%>/Website/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!-- jQuery and Modernizr-->
+<script src="<%=request.getContextPath()%>/Website/js/jquery-2.1.1.js"></script>
+<!-- 이거 파일에 없는데? -->
+<script src="<%=request.getContextPath()%>/Website/js/modernizr.custom.97074.js"></script> --%>
 
 
 </head>
-<header class="sub-header">
+<%-- <header class="sub-header">
 	<jsp:include page="../Website/header.jsp" />
-</header>
+</header> --%>
 <body class="sb-nav-fixed">
-	<!-- header ìì -->
-	<!-- ììª½ ë¤ë¸ë°, ì¬ì´ëë¤ë¸ë° headerë¡ ì¤ì  -->
-	<!-- ììª½ ë¤ë¸ë° -->
-	<!-- include1 -->
-	<!-- <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" id="header1"> -->
-	<!-- header1 -->
-	<!--     </nav> -->
-	<!-- ì¬ì´ë ë¤ë¸ë° -->
-	<!--        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav" >
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion"> -->
-	<!-- include2 -->
-	<!--   <div class="sb-sidenav-menu" id="header2">
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
-                    </div>
-                </nav>
-            </div> -->
-	<!-- header ë -->
-	<div id="layoutSidenav_content">
+	<div id="layoutSidenav_content" style="margin-top: 30px">
 		<main>
 			<!-- include header website file  -->
-			<div class="container-fluid px-4">
-				<input style="margin-left: 1px; margin-top: 20px" action="action"
-					onclick="location.href='http://localhost:8082/MariaMVCBoard/Website/index.jsp'"
-					type="submit" value="Go to the Main Page" /> <input
-					style="margin-left: 5px; margin-top: 20px" action="action"
-					onclick="window.history.go(-1); return false;" type="submit"
-					value="Go Back" />
+			<div class="container-fluid px-4" >
+				<i class="fa-solid fa-circle-arrow-left fa-2x" 	onclick="window.history.go(-1); return false;" ></i>
+			 	<i class="fa-solid fa-house-chimney fa-2x" onclick="location.href='<%=request.getContextPath()%>/Website/index.jsp'"></i>
 				<h1 class="mt-4" style="color: black">Q&A</h1>
-
 				<!-- <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                             <li class="breadcrumb-item active">Tables</li>
@@ -115,18 +94,9 @@
 									<th>Views</th>
 									<th>Date</th>
 									<th>File</th>
+									<th>Download</th>
 								</tr>
 							</thead>
-							<!--                                     <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot> -->
 							<tbody>
 								<c:choose>
 									<c:when test="${empty boardLists }">
@@ -141,10 +111,10 @@
 												<td><a
 													href="http://localhost:8082/MariaMVCBoard/myboard/view2.do?idx=${row.idx }">${row.title }</a>
 												</td>
-												<td>${row.title }</td>
 												<td>${row.name }</td>
 												<td>${row.viewcount }</td>
 												<td>${row.postdate }</td>
+												<td>${row.ofile }</td>
 												<td><c:if test="${not empty row.ofile }">
 														<a
 															href="../myboard/download.do?ofile=${row.ofile }&sfile=${row.sfile}&idx=${row.idx}">
@@ -154,12 +124,11 @@
 										</c:forEach>
 									</c:otherwise>
 								</c:choose>
-
 							</tbody>
 						</table>
 					</div>
 				</div>
-				<button type="button" onclick="location.href='../myboard/write2.do'">글쓰기</button>
+				<button id="btnWrite" type="button" class="btn btn-outline-dark" onclick="location.href='../myboard/write2.do'">글쓰기</button>
 			</div>
 		</main>
 		<footer class="py-4 bg-light mt-auto">
@@ -174,18 +143,13 @@
 			</div>
 		</footer>
 	</div>
-	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/admin/js/scripts.js"></script>
-	<!-- 절대경로 -->
-	<script src="<%=request.getContextPath()%>/admin/js/scripts.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
-		crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/admin/js/datatables-simple-demo.js"></script>
-	<!-- 절대경로 -->
-	<script
-		src="<%=request.getContextPath()%>/admin//js/datatables-simple-demo.js"></script>
+	
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="<%=request.getContextPath()%>/admin/js/scripts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+  <script src="<%=request.getContextPath()%>/admin/js/datatables-simple-demo.js"></script>
+  
+
 </body>
 </html>

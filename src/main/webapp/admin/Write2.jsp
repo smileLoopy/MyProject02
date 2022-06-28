@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>파일 첨부형 게시판</title>
+<!-- BootStrap CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
 	//글쓰기 폼에서 누락된 내용이 있는지 확인하는 함수
 	function validateForm(form) {
@@ -35,6 +38,7 @@
 </script>
 </head>
 <body>
+<div class="container mt-3" style="margin-bottom: 50px;">
 <h2>파일 첨부형 게시판 - 글쓰기 (write)</h2>
 <!--  
 	파일을 첨부하기 위한 작성폼은 아래 2가지 조건이 지켜져야 한다. 
@@ -45,8 +49,11 @@
 	객체를 사용해서 폼값을 받아야 한다. 
 -->
 <form name="writeFrm" method="post" enctype="multipart/form-data" action="../myboard/write2.do" onsubmit="return validateForm(this);">
-<table border="1" width="90%">
-
+<table class="table table-striped">
+	<colgroup>
+<%--     <col width="15%"/> <col width="35%"/> --%>
+    <col width="15%"/> <col width="*"/>
+	</colgroup> 
 	<tr>
 		<td>작성자</td>
 		<td>
@@ -84,18 +91,16 @@
 	
 	<tr>
 		<td colspan="2" align="center">
-			<button type="submit">작성완료</button>
-			<button type="reset">RESET</button>
-			<button type="button" onclick="location.href='/myboard/list2.do';">목록 바로가기</button>
+			<button class="btn btn-outline-dark"  type="submit">작성완료</button>
+			<button class="btn btn-outline-dark"  type="reset">RESET</button>
+			<button class="btn btn-outline-dark"  type="button" onclick="location.href='/myboard/list2.do';">목록 바로가기</button>
 		</td>
 	</tr>
 
 
 </table>
-
-
-
-</form>	
+</form>
+</div>	
 </body>
 </html>
 

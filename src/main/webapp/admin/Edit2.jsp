@@ -5,7 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>파일 첨부형 게시판</title>
+<title>Edit2</title>
+<!-- BootStrap CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
 	//글쓰기 폼에서 누락된 내용이 있는지 확인하는 함수
 	function validateForm(form) {
@@ -35,18 +38,22 @@
 </script>
 </head>
 <body>
-<h2>파일 첨부형 게시판 - 수정하기 (Edit)</h2>
+<div class="container mt-3" style="margin-bottom: 50px;">
 <form name="writeFrm" method="post" enctype="multipart/form-data" action="../myboard/edit2.do" onsubmit="return validateForm(this);">
 <!-- 게시물 수정을 위해 일련번호와 기존 파일명을 hidden박스에 추가한다. -->
-<input type="hid-den" name="idx" value="${dto.idx }"/>
+<input type="hidden" name="idx" value="${dto.idx }"/>
 <!-- 기존의 원본 파일명 -->
-<input type="hidd-en" name="prevOfile" value="${dto.ofile }"/>
+<input type="hidden" name="prevOfile" value="${dto.ofile }"/>
 <!-- 기존의 서버에 저장된 파일명 -->
-<input type="hidde-n" name="prevSfile" value="${dto.sfile }"/>
+<input type="hidden" name="prevSfile" value="${dto.sfile }"/>
 
-검증된 패스워드 : ${pass }
-<table border="1" width="90%">
-
+<%-- 검증된 패스워드 : ${pass } --%>
+<h2>Edit Website쪽</h2>
+<table  class="table table-striped">
+	<colgroup>
+  <%--  <col width="15%"/> <col width="35%"/> --%>
+   <col width="15%"/> <col width="*"/>
+  </colgroup>
 	<tr>
 		<td>작성자</td>
 		<td>
@@ -94,18 +101,16 @@
 	
 	<tr>
 		<td colspan="2" align="center">
-			<button type="submit" >작성완료</button>
-			<button type="reset" >RESET</button>
-			<button type="button" onclick="location.href='../myboard/list2.do';">목록 바로가기</button>
+			<button class="btn btn-outline-dark" type="submit" >작성완료</button>
+			<button class="btn btn-outline-dark" type="reset" >RESET</button>
+			<button class="btn btn-outline-dark" type="button" onclick="location.href='../myboard/list2.do';">목록 바로가기</button>
 		</td>
 	</tr>
 
 
 </table>
-
-
-
-</form>	
+</form>
+</div>
 </body>
 </html>
 

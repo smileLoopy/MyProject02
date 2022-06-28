@@ -68,7 +68,7 @@
 							</form>
 						</div>
 						<div class="col-md-6">
-							<h1>WE ARE HERE</h1>
+							<h1>WE ARE HERE IN YOGYAKARTA</h1>
 							<p><span class="glyphicon glyphicon-home"></span> California, United States 3000009</p>
 							<p><span class="glyphicon glyphicon-earphone"></span> +6221 888 888 90 , +6221 888 88891</p>
 							<p><span class="glyphicon glyphicon-envelope"></span> info@yourdomain.com</p>

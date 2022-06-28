@@ -84,6 +84,7 @@
                                             <th>Views</th>
                                             <th>Date</th>
                                             <th>File</th>
+                                            <th>Download</th>
                                         </tr>
                                     </thead>
 <!--                                     <tfoot>
@@ -112,10 +113,10 @@
 				<td>
 					<a href="http://localhost:8082/MariaMVCBoard/myboard/view.do?idx=${row.idx }">${row.title }</a>
 				</td>
-				<td>${row.title }</td>
 				<td>${row.name }</td>
 				<td>${row.viewcount }</td>
 				<td>${row.postdate }</td>
+				<td>${row.ofile }</td>
 				<td>
 				<c:if test="${not empty row.ofile }">
          	<a href="../myboard/download.do?ofile=${row.ofile }&sfile=${row.sfile}&idx=${row.idx}">
@@ -587,7 +588,7 @@
                                 </table>
                             </div>
                         </div>
-                        <button type="button" onclick="location.href='../myboard/write2.do'">글쓰기</button>
+                        <button type="button" class="btn btn-outline-dark" onclick="location.href='../myboard/write.do'">글쓰기</button>
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">

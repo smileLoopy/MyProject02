@@ -96,6 +96,15 @@ public class WriteController extends HttpServlet{
 		}
 		//새로운 게시물을 테이블에 저장한다.
 		MyNoticeDAO dao = new MyNoticeDAO();
+		
+		//한번에 여러 게시물 입력하기
+		/*int iResult = 0;
+		for (int i=1; i<=100; i++) {
+			dto.setTitle(mr.getParameter("title") +"-"+ i);
+			iResult = dao.insertWrite(dto);
+		}*/
+		
+		
 		int result = dao.insertWrite(dto);
 		//커넥션풀 자원 반납.
 		dao.close();
